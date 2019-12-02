@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row" style="background: #515f4e">
+        <div class="col-12" style="font-size: 36px;color: white;">Url-Validator</div>
+        <div class="col-12">
+            <div class="col-12"
+                style="display: flex;height: 200px;align-content: center;padding: 20px;padding: 30px 50px; justify-content: center;">
+                <textarea class="form-control" type="text" [(ngModel)]="urls" name="urls"
+                    style="width: 100%;resize: none;"
+                    placeholder="Input your url here. You can use &quot;;&quot; to seperate multiple url"></textarea>
+                <button class="btn btn-success" style="font-size: 20px;" (click)="checkUrls()">
+                    click here!
+                </button>
+            </div>
+            <div class="col-12" style="color:white;font-size:24px;text-align: center;">
+                OR
+            </div>
+            <div class="col-12"
+                style="display: flex;height: 150px;align-content: center;justify-content: center;padding: 30px;">
+                <!-- <input type="file" id="file" (change)="onFileSelected($event)"> -->
+                <!-- <button class="btn btn-success" style="width: 300px;border-radius: 100px;font-size: 30px;">
+
+                </button> -->
+
+                <input id="fileinput" type="file" (change)="onFileSelected($event)" />
+                <label for="fileinput" class="btn btn-success" style="width: auto;min-width: 300px;padding: 15px 50px;border-radius: 100px;font-size: 30px;cursor: pointer;">{{ fileName == "" ? 'Import Here' : fileName }}</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12" style="padding: 24px;">
+            <div style="width: 100%; text-align:right">
+                <button class="btn btn-success" (click)="reportToExcel(urlResults)">Export to excel</button>
+            </div>
+            <table class="table table-condensed">
+                <ng-template [ngIf]="urlResults.length > 0">
+                    <tr>
+                        <td>Url</td>
+                        <td>status</td>
+                    </tr>
+                    <tr *ngFor="let ur of urlResults">
+                        <td><a href="{{ ur.url }}">{{ ur.url }}</a></td>
+                        <td>{{ ur.status }}</td>
+                    </tr>
+                </ng-template>
+                <ng-template [ngIf]="urlResults.length == 0">
+                    <tr>
+                        <td colspan="2" style="text-align: center">No Data.</td>
+                    </tr>
+                </ng-template>
+            </table>
+        </div>
+    </div>
+</div>
