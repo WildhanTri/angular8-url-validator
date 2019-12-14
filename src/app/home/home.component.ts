@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 import readXlsxFile from 'read-excel-file'
-import { url } from 'inspector';
 
 @Component({
   selector: 'app-home',
@@ -37,7 +36,7 @@ export class HomeComponent implements OnInit {
 
     var x = new XMLHttpRequest();
     x.timeout = 1000;
-    x.open('GET', "https://cors-anywhere.herokuapp.com/" + url);
+    x.open('GET', url);
     x.setRequestHeader("Access-Control-Allow-Headers", "x-requested-with, x-requested-by")
     x.onreadystatechange = (e: any) => {
       var http: XMLHttpRequest = e.currentTarget;
